@@ -5,18 +5,19 @@
 
 using namespace std;
 
-
+template<typename T>
 struct Counter {
     int mutable count = 0;
-    std::function<int (double)> callback;
-    Counter(std::function<int (double)> func )
+    T callback;
+    Counter(T func )
     : callback(func), count(0)
     { }
 
-    int operator()(double i) const
+    template<typename... args>
+    auto operator()(args... Args) const
     {
         count = count + 1;
-        return callback(i);
+        return callback(Args...);
     }
 };
 
@@ -26,21 +27,13 @@ int f(double d)
      return static_cast<int>(2*d); 
 }
 
-int g(int i){
-    cout<<"something"<<endl;
-    return i;
-}
-void a(int i){
-    cout<<i<<endl;
-}
-
 Counter cf(f);
 
 int main()
 {
-    //cf.();
     cf(2.3); 
     cf(5.4);
-    //cf(5);
+    cf(6);
+    cf(6.889);
     cout << cf.count << endl;
 }
