@@ -15,7 +15,7 @@ It seems like DistributedCountertest2 ran the fastest. The external factors cont
 Apart from these, 
 The first one has counter variable has shared among all the threads.
 
-The second file has individual counts.
+The second file has individual counter var for all the threads.
 
 The count variable has count variable at every 256th memory, and cache varaible being accessed is taking time thus its slower.
 
